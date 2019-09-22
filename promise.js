@@ -7,8 +7,11 @@ class Promise {
 
     this.initValue()
     this.initBind()
-
-    executor(this.resolve, this.reject)
+    try {
+      executor(this.resolve, this.reject)
+    } catch(e) {
+      this.reject(e)
+    }
   }
 
   initBind() { // bind this
