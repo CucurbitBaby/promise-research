@@ -11,27 +11,24 @@ const Promise = require('./promise.js')
 console.log('1')
 
 new Promise((resovle, reject) => {
-
-  console.log('2')
+  throw new Error('haha, this is error')
   resovle(1)
 
+  
 }).then(value => {
-    console.log('4')
-    console.log('value', value)
+  console.log('4')
+  console.log('value', value)
 
-  }, reason => {
+}, reason => {
 
-    console.log('reason', reason)
+  console.log('reason', reason)
 
-  }
-)
+})
 
 console.log('3')
 
 /*
 1
-2
-4
-3
-value 1
+D:\promise-research-cyan\test.js:14
+  throw new Error('haha, this is error')
 //*/

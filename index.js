@@ -10,7 +10,7 @@
 console.log('1')
 
 new Promise((resovle, reject) => {
-  console.log('2')
+  throw new Error('haha, this is error')
   resovle(1)
 
   
@@ -28,8 +28,6 @@ console.log('3')
 
 /*
 1
-2
 3
-4
-value 1
+reason Error: haha, this is error
 //*/

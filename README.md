@@ -2,10 +2,10 @@
 
 ``` bash
 
-# 原生执行顺序
+# 原生错误进入reason处理
 node index.js
 
-# 自定义执行顺序 - 定时器模拟异步
+# 自定义错误直接最外层抛
 node test.js
 
 
