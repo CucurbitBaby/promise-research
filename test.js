@@ -1,32 +1,37 @@
+/*
+1. index.js   进行原生的Promise演示
+2. promise.js 进行自定义的Promise演示
+3. test.js    是对promise.js进行测试
+4. 开发过程结合promise/a+规范
+//*/
+
+  
 const Promise = require('./promise.js')
 
-new Promise((resovle, reject) => {  // 匿名函数
-  console.log('start')
+console.log('1')
+
+new Promise((resovle, reject) => {
+
+  console.log('2')
   resovle(1)
-})     
-  .then(value => {
+
+}).then(value => {
+    console.log('4')
     console.log('value', value)
+
   }, reason => {
+
     console.log('reason', reason)
-})
+
+  }
+)
+
+console.log('3')
+
 /*
-// 匿名函数this指向undefined
-start
-D:promise-research-cyan\promise.js:16
-      if(this.state === 'pending') {  // 不可逆
-*/
-
-
-
-
-
-
-//  自定义Promise new Promise时 参数传递错误
-//  new Promise(1)  
-/*
-D:promise-research-cyan\promise.js:5
-      throw new TypeError(`Promise resolver ${executor} is not function`)
-      ^
-
-TypeError: Promise resolver 1 is not function
-*/
+1
+2
+4
+value 1
+3
+//*/

@@ -38,7 +38,7 @@ class Promise {
 
   then(onFulfilled, onRejected) {
     if(typeof onFulfilled !== 'function') { // 参数校验
-      onFulfilled = function(value) {
+      onFulfilled = function(value) {       
         return value                        
       }
     }
@@ -50,11 +50,11 @@ class Promise {
     }
 
     if(this.state === Promise.FULFILLED) {
-      onFulfilled(this.value)
+      onFulfilled(this.value)                // 因为它立即执行了
     }
     
     if(this.state === Promise.REJECTED) {
-      onRejected(this.reason)
+      onRejected(this.reason)                // 因为它立即执行了
     }
   }
 }
