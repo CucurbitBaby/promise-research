@@ -32,6 +32,6 @@ console.log('3')
 1
 2
 4
-value 1
 3
+value 1
 //*/

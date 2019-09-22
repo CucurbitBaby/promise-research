@@ -5,7 +5,7 @@
 # 原生执行顺序
 node index.js
 
-# 自定义执行顺序
+# 自定义执行顺序 - 定时器模拟异步
 node test.js
 
 

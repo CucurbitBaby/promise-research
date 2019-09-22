@@ -50,11 +50,15 @@ class Promise {
     }
 
     if(this.state === Promise.FULFILLED) {
-      onFulfilled(this.value)                // 因为它立即执行了
+      setTimeout(() => {
+      onFulfilled(this.value)               
+      })
     }
     
     if(this.state === Promise.REJECTED) {
-      onRejected(this.reason)                // 因为它立即执行了
+      setTimeout(() => {
+        onRejected(this.reason)               
+      })
     }
   }
 }
