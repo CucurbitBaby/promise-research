@@ -2,10 +2,10 @@
 
 ``` bash
 
-# 原生继续执行
+# 原生执行顺序
 node index.js
 
-# 自定义不继续
+# 自定义通过callbacks实现原生执行顺序
 node test.js
 
 

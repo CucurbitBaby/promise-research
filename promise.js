@@ -23,12 +23,15 @@ class Promise {
     this.value  = null                // 终值
     this.reason = null                // 拒因
     this.state  = Promise.PENDING     // 状态  
+    this.onFulfilledCallbacks = []    // 存放成功回调
+    this.onRejectedCallbacks  = []    // 存放失败回调
   }
 
   resolve(value) {                          // 成功后的一系列操作(状态的改变,成功回调的执行)
     if(this.state === Promise.PENDING) {    // 不可逆
       this.state = Promise.FULFILLED        // state change
       this.value = value                    // resolve callback
+      this.onFulfilledCallbacks.forEach(fn => fn(this.value))
     }
   }
 
@@ -36,6 +39,7 @@ class Promise {
     if(this.state === Promise.PENDING) {   // 不可逆
       this.state  = Promise.REJECTED       // state change
       this.reason = reason                 // reject callback
+      this.onRejectedCallbacks.forEach(fn => fn(this.reason))
     }
   }
 
@@ -54,13 +58,27 @@ class Promise {
 
     if(this.state === Promise.FULFILLED) {
       setTimeout(() => {
-      onFulfilled(this.value)               
+        onFulfilled(this.value)               
       })
     }
     
     if(this.state === Promise.REJECTED) {
       setTimeout(() => {
         onRejected(this.reason)               
+      })
+    }
+
+    if(this.state === Promise.PENDING) {
+      this.onFulfilledCallbacks.push(value => {
+        setTimeout(() => {
+          onFulfilled(value)
+        })
+      })
+
+      this.onRejectedCallbacks.push(reason => {
+        setTimeout(() => {
+          onFulfilled(reason)
+        })
       })
     }
   }
