@@ -3,8 +3,12 @@ const Promise = require('./promise.js')
 new Promise((resovle, reject) => {  // 匿名函数
   console.log('start')
   resovle(1)
+})     
+  .then(value => {
+    console.log('value', value)
+  }, reason => {
+    console.log('reason', reason)
 })
-
 /*
 // 匿名函数this指向undefined
 start

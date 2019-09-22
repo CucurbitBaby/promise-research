@@ -8,7 +8,7 @@
 
 
 // 原生Promise new Promise时 参数传递错误
-new Promise(1)
+// new Promise(1)
 /*
 new Promise(1)
 ^
@@ -20,17 +20,19 @@ TypeError: Promise resolver 1 is not a function
 
 
 
-/*
+//*
 
 new Promise((resovle, reject) => {
   setTimeout(() => {
     resovle(1)
   })
-}).then(value => {
-  console.log('value', value)
-}, reason => {
-  console.log('reason', reason)
 })
+  .then() // 穿透效果，原生Promise这里不是完全被忽略         
+  .then(value => {
+    console.log('value', value)
+  }, reason => {
+    console.log('reason', reason)
+  })
 
 //*/
 

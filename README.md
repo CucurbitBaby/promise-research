@@ -2,11 +2,10 @@
 
 ``` bash
 
-# 原生Promise new Promise时 参数传递错误
+# 原生Promise .then().then(...)穿透效果
 node index.js
 
-# 自定义Promise优化代码
-# 提取方法之后的this指向问题，添加initValue()绑定this解决
+# 添加then方法，判断params是否时函数，不完全忽略
 node test.js
 
 

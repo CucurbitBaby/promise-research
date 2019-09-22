@@ -35,6 +35,28 @@ class Promise {
       this.reason = reason           // reject callback
     }
   }
+
+  then(onFulfilled, onRejected) {
+    if(typeof onFulfilled !== 'function') { // 参数校验
+      onFulfilled = function(value) {
+        return value                        
+      }
+    }
+
+    if(typeof onRejected !== 'function') {  // 参数校验
+      onRejected = function(reason) {
+        throw reason
+      }
+    }
+
+    if(this.state === 'fulfilled') {
+      onFulfilled(this.value)
+    }
+    
+    if(this.state === 'rejected') {
+      onRejected(this.reason)
+    }
+  }
 }
 
 module.exports = Promise
