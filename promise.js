@@ -6,9 +6,14 @@ class Promise {
     }
 
     this.initValue()
-
+    this.initBind()
 
     executor(this.resolve, this.reject)
+  }
+
+  initBind() { // bind this
+    this.resolve  = this.resolve.bind(this)
+    this.reject   = this.reject.bind(this)
   }
 
   initValue() {                 // 初始化值
