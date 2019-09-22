@@ -6,6 +6,22 @@
 //*/
 
 
+
+// 原生Promise new Promise时 参数传递错误
+new Promise(1)
+/*
+new Promise(1)
+^
+TypeError: Promise resolver 1 is not a function
+*/
+
+
+
+
+
+
+/*
+
 new Promise((resovle, reject) => {
   setTimeout(() => {
     resovle(1)
@@ -15,3 +31,6 @@ new Promise((resovle, reject) => {
 }, reason => {
   console.log('reason', reason)
 })
+
+//*/
+
