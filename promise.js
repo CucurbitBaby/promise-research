@@ -60,30 +60,46 @@ class Promise {
     let promise2 = new Promise((resolve, reject) => {
       if(this.state === Promise.FULFILLED) {
         setTimeout(() => {
-          const x = onFulfilled(this.value)     
-          resolve(x)          
+          try {
+            const x = onFulfilled(this.value)     
+            resolve(x)     
+          } catch(e) {
+            reject(e)
+          }
         })
       }
       
       if(this.state === Promise.REJECTED) {
         setTimeout(() => {
-          const x = onRejected(this.reason)       
-          resolve(x)            
+          try {
+            const x = onRejected(this.reason)       
+            resolve(x)       
+          } catch(e) {
+            reject(e)
+          }
         })
       }
   
       if(this.state === Promise.PENDING) {
         this.onFulfilledCallbacks.push(value => {
           setTimeout(() => {
-            const x = onFulfilled(value)
-            resolve(x)    
+            try {
+              const x = onFulfilled(value)
+              resolve(x)    
+            } catch(e) {
+              reject(e)
+            }
           })
         })
   
         this.onRejectedCallbacks.push(reason => {
           setTimeout(() => {
-            const x = onFulfilled(reason)
-            resolve(x)    
+            try {
+              const x = onFulfilled(reason)
+              resolve(x)    
+            } catch(e) {
+              reject(e)
+            }
           })
         })
       }

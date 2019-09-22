@@ -19,6 +19,7 @@ new Promise((resovle, reject) => {
 })
   .then(
     value => {
+      throw new Error('test error')
       return ('链式+' + value)
     }, 
     reason => {
@@ -37,5 +38,6 @@ new Promise((resovle, reject) => {
 
 
 /*
-value 链式+1
+reason Error: test error
+    at Promise.then.value (D:\promise-research-cyan\index.js:22:13)
 //*/
