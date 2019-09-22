@@ -11,8 +11,10 @@ const Promise = require('./promise.js')
 console.log('1')
 
 new Promise((resovle, reject) => {
-  throw new Error('haha, this is error')
-  resovle(1)
+
+  setTimeout(() => {
+    resovle(1)
+  })
 
   
 }).then(value => {
@@ -29,6 +31,5 @@ console.log('3')
 
 /*
 1
-D:\promise-research-cyan\test.js:14
-  throw new Error('haha, this is error')
+3
 //*/

@@ -10,8 +10,10 @@
 console.log('1')
 
 new Promise((resovle, reject) => {
-  throw new Error('haha, this is error')
-  resovle(1)
+  
+  setTimeout(() => {
+    resovle(1)
+  })
 
   
 }).then(value => {
@@ -29,5 +31,6 @@ console.log('3')
 /*
 1
 3
-reason Error: haha, this is error
+4
+value 1
 //*/
