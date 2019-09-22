@@ -43,7 +43,7 @@ class Promise {
     }
   }
 
-  then(onFulfilled, onRejected) {
+  then(onFulfilled, onRejected) { 
     if(typeof onFulfilled !== 'function') { // 参数校验
       onFulfilled = function(value) {       
         return value                        
@@ -56,36 +56,47 @@ class Promise {
       }
     }
 
-    if(this.state === Promise.FULFILLED) {
-      setTimeout(() => {
-        onFulfilled(this.value)               
-      })
-    }
-    
-    if(this.state === Promise.REJECTED) {
-      setTimeout(() => {
-        onRejected(this.reason)               
-      })
-    }
-
-    if(this.state === Promise.PENDING) {
-      this.onFulfilledCallbacks.push(value => {
+    // 实现了链式调用，且改变了后面then的值，必须通过新的Promise实例
+    let promise2 = new Promise((resolve, reject) => {
+      if(this.state === Promise.FULFILLED) {
         setTimeout(() => {
-          onFulfilled(value)
+          const x = onFulfilled(this.value)     
+          resolve(x)          
         })
-      })
-
-      this.onRejectedCallbacks.push(reason => {
+      }
+      
+      if(this.state === Promise.REJECTED) {
         setTimeout(() => {
-          onFulfilled(reason)
+          const x = onRejected(this.reason)       
+          resolve(x)            
         })
-      })
-    }
+      }
+  
+      if(this.state === Promise.PENDING) {
+        this.onFulfilledCallbacks.push(value => {
+          setTimeout(() => {
+            const x = onFulfilled(value)
+            resolve(x)    
+          })
+        })
+  
+        this.onRejectedCallbacks.push(reason => {
+          setTimeout(() => {
+            const x = onFulfilled(reason)
+            resolve(x)    
+          })
+        })
+      }
+    })
+
+    return promise2
   }
 }
 
 Promise.PENDING   = 'pending'
 Promise.FULFILLED = 'fulfilled'
 Promise.REJECTED  = 'rejected'
+Promise.resolvePromise = function(promise2, x, resolve, reject) {
 
+}
 module.exports = Promise

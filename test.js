@@ -8,28 +8,32 @@
   
 const Promise = require('./promise.js')
 
-console.log('1')
-
 new Promise((resovle, reject) => {
-
+  
   setTimeout(() => {
     resovle(1)
   })
 
   
-}).then(value => {
-  console.log('4')
-  console.log('value', value)
-
-}, reason => {
-
-  console.log('reason', reason)
-
 })
+  .then(
+    value => {
+      return ('链式+' + value)
+    }, 
+    reason => {
+      console.log('reason', reason)
+    }
+  )
 
-console.log('3')
+  .then(
+    value => {
+      console.log('value', value)
+    },
+    reason => {
+      console.log('reason', reason)
+    }
+  )
 
 /*
-1
-3
+value 链式+1
 //*/

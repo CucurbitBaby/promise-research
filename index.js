@@ -7,7 +7,7 @@
 
 
 
-console.log('1')
+
 
 new Promise((resovle, reject) => {
   
@@ -16,21 +16,26 @@ new Promise((resovle, reject) => {
   })
 
   
-}).then(value => {
-  console.log('4')
-  console.log('value', value)
-
-}, reason => {
-
-  console.log('reason', reason)
-
 })
+  .then(
+    value => {
+      return ('链式+' + value)
+    }, 
+    reason => {
+      console.log('reason', reason)
+    }
+  )
 
-console.log('3')
+  .then(
+    value => {
+      console.log('value', value)
+    },
+    reason => {
+      console.log('reason', reason)
+    }
+  )
+
 
 /*
-1
-3
-4
-value 1
+value 链式+1
 //*/

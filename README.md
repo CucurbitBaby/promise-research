@@ -2,10 +2,10 @@
 
 ``` bash
 
-# 原生执行顺序
+# 原生链式调用
 node index.js
 
-# 自定义通过callbacks实现原生执行顺序
+# 自定义链式调用1
 node test.js
 
 
