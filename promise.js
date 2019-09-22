@@ -11,7 +11,7 @@ class Promise {
     this.state = 'pending'    // 状态  
 
 
-    const resolve = function(value) { // 成功后的一系列操作(状态的改变,成功回调的执行)
+    const resolve = value => {        // 成功后的一系列操作(状态的改变,成功回调的执行)
       
       if(this.state === 'pending') {  // 不可逆
         this.state = 'fulfilled'      // state change
@@ -19,7 +19,7 @@ class Promise {
       }
     }
       
-    const reject = function(reason) { // 失败后的一系列操作(状态的改变,失败回调的执行)
+    const reject = reason => {        // 失败后的一系列操作(状态的改变,失败回调的执行)
       if(this.state === 'pending') {  // 不可逆
         this.state = 'rejected'       // state change
         this.reason = reason          // reject callback
