@@ -5,37 +5,44 @@
 4. 开发过程结合promise/a+规范
 //*/
 
-
-
-
-
-new Promise((resovle, reject) => {
-  
-  setTimeout(() => {
-    resovle(1)
-  })
-
-  
+// 循环调用
+let p1 = new Promise(resolve => {
+  resolve(1)
 })
-  .then(
-    value => {
-      return new Promise((resovle) => {
-        resovle(1)
-      })
-    }, 
-    reason => {
-      console.log('reason', reason)
-    }
-  )
 
-  .then(
-    value => {
-      console.log('value', value)
-    },
-    reason => {
-      console.log('reason', reason)
-    }
-  )
+let p2 = p1.then(() =>{
+  return p2
+})
+
+
+
+// new Promise((resovle, reject) => {
+  
+//   setTimeout(() => {
+//     resovle(1)
+//   })
+
+  
+// })
+//   .then(
+//     value => {
+//       return new Promise((resovle) => {
+//         resovle(1)
+//       })
+//     }, 
+//     reason => {
+//       console.log('reason', reason)
+//     }
+//   )
+
+//   .then(
+//     value => {
+//       console.log('value', value)
+//     },
+//     reason => {
+//       console.log('reason', reason)
+//     }
+//   )
 
 
 /*
